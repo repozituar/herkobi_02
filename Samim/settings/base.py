@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'tatbikat.mustahdimin',
+
+    'django_user_agents',
+    'import_export',
 ]
 
 SITE_ID = 1
@@ -60,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_user_agents.middleware.UserAgentMiddleware',
 ]
 
 ROOT_URLCONF = 'Samim.urls'
@@ -92,6 +96,16 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_FORMS = {
+    "login": "allauth.account.forms.LoginForm",
+    "add_email": "allauth.account.forms.AddEmailForm",
+    "change_password": "allauth.account.forms.ChangePasswordForm",
+    "set_password": "allauth.account.forms.SetPasswordForm",
+    "reset_password": "allauth.account.forms.ResetPasswordForm",
+    "reset_password_from_key": "allauth.account.forms.ResetPasswordKeyForm",
+    "disconnect": "allauth.socialaccount.forms.DisconnectForm",
+    "signup": "tatbikat.mustahdimin.forms.CustomSignupForm",
+}
 
 
 # Password validation

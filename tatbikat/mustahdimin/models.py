@@ -19,3 +19,17 @@ class Mustahdim(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+
+
+class Tarihce(models.Model):
+    email = models.EmailField(unique=True, null=True, blank=True)
+    mustahdim = models.ForeignKey(Mustahdim, on_delete=models.CASCADE)
+    current_os = models.CharField(max_length=124, blank=True, null=True)
+    current_os_version = models.CharField(max_length=124, blank=True, null=True)
+    current_browser = models.CharField(max_length=124, blank=True, null=True)
+    current_browser_version = models.CharField(max_length=124, blank=True, null=True)
+    logged_in_at = models.DateTimeField(auto_now_add=True)
+    otp = models.CharField(max_length=6, blank=True, null=True)
+
