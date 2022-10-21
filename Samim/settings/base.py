@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
 
     'tatbikat.mustahdimin',
+    'tatbikat.mustecirin',
 
     'django_user_agents',
     'import_export',

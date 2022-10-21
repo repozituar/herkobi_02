@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from tatbikat.mustecirin.models import Mustecir
 from .managers import MustahdimManager
 
 
@@ -11,6 +12,12 @@ class Mustahdim(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     date_joined = models.DateTimeField(default=timezone.now)
+
+    mumtaz = models.BooleanField(default=False)
+    ad = models.CharField(max_length=124, blank=True, null=True)
+    soyad = models.CharField(max_length=124, blank=True, null=True)
+
+    mustecir = models.ForeignKey(Mustecir, on_delete=models.CASCADE, blank=True, null=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
