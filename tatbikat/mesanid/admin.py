@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Fihrist, Hesab, Stok
 
-# Register your models here.
+admin.site.register(Fihrist)
+admin.site.register(Hesab)
+admin.site.register(Stok)
