@@ -1,0 +1,53 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<main class="main-site text-center p-3 w-100 m-auto">
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-lg-5">
+              <h1>{% trans "Sign In" %}</h1>
+              <p>Henüz üyeliğiniz yoksa önce
+                  <a href="{% url 'account_signup' %}">Üye Olun</a>.</p>
+              <form  method="POST" action="{% url 'account_login' %}">{% csrf_token %}
+                  <div class="input-group mb-2">
+                      <span class="input-group-text">
+                          <i class="bi bi-envelope-plus"></i>
+                      </span>
+                      <div class="form-floating">
+                          <input type="email" name="login" class="form-control" id="id_login" placeholder="E-posta Adresi" autocomplete="email" required="">
+                          <label for="id_login">E-posta Adresiniz</label>
+                      </div>
+                  </div>
+                  <div class="input-group mb-2">
+                      <span class="input-group-text">
+                          <i class="bi bi-envelope-plus"></i>
+                      </span>
+                      <div class="form-floating">
+                          <input type="password" name="password" class="form-control" id="id_password" placeholder="E-posta Adresi" autocomplete="current-password" required="">
+                          <label for="id_password">Parola</label>
+                      </div>
+                  </div>
+                  <div class="form-check text-start mb-3">
+                      <input class="form-check-input" name="remember" type="checkbox" id="id_remember">
+                      <label class="form-check-label" for="id_remember">Beni Hatırla</label>
+                  </div>
+                  {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                  {% endif %}            
+                  <div class="mb-3">
+                      <button type="submit" class="btn btn-lg btn-primary w-100 text-white">
+                          <i class="bi bi-link-45deg"></i>
+                          <span>Giriş Yap</span>
+                      </button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</main>
+{% endblock %}

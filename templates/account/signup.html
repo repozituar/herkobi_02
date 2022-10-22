@@ -1,0 +1,63 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<main class="main-site text-center p-3 w-100 m-auto">
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-lg-5">
+              <h2>{% trans "Sign Up" %} {% if type %}{{type}}{% else %}Administrator{% endif %}</h2>
+              <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+              <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">{% csrf_token %}
+                  <div class="input-group mb-3">
+                      <span class="input-group-text">
+                          <i class="bi bi-person-plus"></i>
+                      </span>
+                      <div class="form-floating">
+                          <input type="email" class="form-control" name="email" id="id_email" autocomplete="email" placeholder="E-posta adresiniz">
+                          <label for="id_email">E-posta</label>
+                      </div>
+                  </div>                        
+                  <div class="input-group">
+                      <span class="input-group-text">
+                          <i class="bi bi-shield-check"></i>
+                      </span>
+                      <div class="form-floating">
+                          <input type="password" name="password1" class="form-control" id="id_password1" placeholder="Kullanacağınız Şifre" autocomplete="new-password" required="">
+                          <label for="id_password1">Kullanacağınız Şifre</label>
+                      </div>
+                  </div>
+                  <div class="mb-2 text-start">
+                      <span class="small">Şifreniz en az 9 karakter olmalı ve en az 1 harf, 1 rakam içermelidir.</span>
+                  </div>
+                  <div class="input-group">
+                      <span class="input-group-text">
+                          <i class="bi bi-shield-exclamation"></i>
+                      </span>
+                      <div class="form-floating">
+                          <input type="password" name="password2" class="form-control" id="id_password2" placeholder="Şifrenizi Onaylayınız" required="">
+                          <label for="id_password2">Şifrenizi Onaylayınız</label>
+                      </div>
+                  </div>
+                  <div class="mb-3 text-start">
+                      <span class="small">Şifrenizin doğruluğunu kontrol etmek için tekrar giriniz.</span>
+                  </div>  
+                  {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                  {% endif %}                      
+                  <div class="mb-3">
+                      <button type="submit" class="btn btn-lg btn-primary w-100 text-white">
+                          <i class="bi bi-check2-square"></i>
+                          <span>{% trans "Sign Up" %}</span>
+                      </button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</main>
+
+{% endblock %}

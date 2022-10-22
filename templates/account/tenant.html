@@ -1,0 +1,92 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+<main class="main-site text-center p-3 w-100 m-auto">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <h2>Firma Bilgileri</h2>
+                <p>Lütfen firmanıza ait bilgileri doğru bir şekilde giriniz.<br>Girdiğiniz bu bilgiler kontrol edilecektir.</p>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="input-group mb-2">
+                        <span class="input-group-text">
+                            <i class="bi bi-building"></i>
+                        </span>
+                        <div class="form-floating">
+                            <input type="text" name="unvan" class="form-control" id="id_unvan" maxlength="550" placeholder="Firma Adı (Tam Ünvanı Giriniz)">
+                            <label for="id_unvan">Firma Adı (Tam Unvanı Giriniz)</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-cash-stack"></i>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="text" name="vergi_dairesi" class="form-control" id="id_vergi_dairesi" maxlength="124" placeholder="Vergi Dairesi">
+                                    <label for="id_vergi_dairesi">Vergi Dairesi</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-123"></i>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="text" name="vergi_numarasi" class="form-control" id="id_vergi_numarasi" maxlength="124" placeholder="Vergi Numarası">
+                                    <label for="id_vergi_numarasi">Vergi Numarası</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-2">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-geo-alt"></i>
+                            </span>
+                            <div class="form-floating">
+                                <textarea class="form-control" name="adres" id="id_adres" rows="4" placeholder="Adres"></textarea>
+                                <label for="id_adres">Adres</label>
+                                <div></div>
+                            </div>
+                        </div>                            
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-pin-map"></i>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="text" name="ilce" class="form-control" id="id_ilce" maxlength="124" placeholder="İlçe">
+                                    <label for="id_ilce">İlçe</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text">
+                                    <i class="bi bi-geo"></i>
+                                </span>
+                                <div class="form-floating">
+                                    <input type="text" name="il" class="form-control" id="id_il" maxlength="124" placeholder="İl">
+                                    <label for="id_il">İl</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                        
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-lg btn-primary w-100 text-white">
+                            <i class="bi bi-check2-square"></i>
+                            <span>Kaydımı Tamamla</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}
