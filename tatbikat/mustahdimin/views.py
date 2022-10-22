@@ -5,7 +5,8 @@ from django.core.mail import send_mail
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 
-from tatbikat.mustahdimin.forms import MustecirForm, TarihceForm
+from .forms import TarihceForm
+from tatbikat.mustecirin.forms import MustecirForm
 
 
 from .models import (

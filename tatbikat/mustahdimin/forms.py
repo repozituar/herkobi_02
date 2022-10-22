@@ -22,3 +22,4 @@ class TarihceForm(forms.ModelForm):
         fields=['otp']
 
 
+
