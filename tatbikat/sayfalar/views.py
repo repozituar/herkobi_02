@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def anasayfa(request):
+    context = {}
+    return render(request, 'sayfalar/anasayfa.html', context)
+
