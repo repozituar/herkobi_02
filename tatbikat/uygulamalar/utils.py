@@ -66,7 +66,7 @@ def vazife_yap(tatbik, salahiyet):
     uygulama = fihrist_yap(tatbik, salahiyet.mustecir)
     vazife = Vazife.objects.create(
         mustecir=salahiyet.mustecir,
-        isim=f"{uygulama.isim} {salahiyet.mesuliyet.isim}",
+        isim=f"{uygulama.isim} {salahiyet.isim}",
         fihrist=uygulama,
         salahiyet=salahiyet,
     )
