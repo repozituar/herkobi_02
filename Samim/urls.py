@@ -7,5 +7,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('tatbikat.mustahdimin.urls')),
     path('accounts/', include('allauth.urls')),
+    path('applications/', include('tatbikat.uygulamalar.urls', namespace='uygulamalar')),
     path('', include('tatbikat.sayfalar.urls', namespace='sayfalar')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

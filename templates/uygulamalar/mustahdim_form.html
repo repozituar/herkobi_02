@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head_title %}Yeni Kullanıcı Ekle{% endblock head_title %}
+
+{% block content %}
+<div class="page-content-tab">
+
+    <div class="container-fluid">
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="float-end">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Metrica</a></li>
+                            <li class="breadcrumb-item"><a href="#">Forms</a></li>
+                            <li class="breadcrumb-item active">Form Elements</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">Form Elements</h4>
+                </div>
+                <!--end page-title-box-->
+            </div>
+            <!--end col-->
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Yeni Kullanıcı Ekle</h4>
+                        <p class="text-muted mb-0">Personelinize yeni kullanıcı hesabı açınız.</p> 
+                    </div><!--end card-header-->
+                    <div class="card-body">
+                        <form method="POST">{% csrf_token %}
+                            <div class="mb-3">
+                                <label for="id_email">E-posta adresi</label>
+                                <input type="email" class="form-control" name="email" maxlength="254" autofocus=""
+                                required="" id="id_email" aria-describedby="emailHelp" placeholder="E-posta adresi">
+                                <small id="emailHelp" class="form-text text-muted">Eposta adresinizi paylaşmayacağımız konusunda sizi temin ederiz.</small>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_password1">Parola</label>
+                                <input type="password" class="form-control" name="password1" autocomplete="new-password" required="" id="id_password1" placeholder="Parolanızı giriniz">
+                                <small id="pwdHelp" class="form-text text-muted">Parolanız diğer kişisel bilgileriniz ile çok benzer olamaz.</li><li>Parolanız en az 8 karakter içermek zorundadır.</li><li>Parolanız yaygın olarak kullanılan bir parola olamaz.</li><li>Parolanız tamamıyla sayısal olamaz.</small>
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_password2">Parola Onayı</label>
+                                <input type="password" class="form-control" name="password2" autocomplete="new-password" required="" id="id_password2" placeholder="Parolanızı tekrar giriniz">
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_ad">Ad:</label>
+                                <input type="text" name="ad"  class="form-control" placeholder="İsminiz" required="" id="id_ad">
+                            </div>
+                            <div class="mb-3">
+                                <label for="id_soyad">Soyad:</label>
+                                <input type="text" name="soyad"  class="form-control" placeholder="Soy isminiz" required="" id="id_soyad">
+                            </div>
+                            <button type="submit" class="btn btn-de-primary">Ekle</button>
+                            <a href="{% url 'uygulamalar:mustahdimin' %}" class="btn btn-de-danger">Vazgeç</a>
+                        </form>                                           
+                    </div><!--end card-body-->
+                </div><!--end card-->
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!-- container -->
+
+    <!--Start Rightbar-->
+    <!--Start Rightbar/offcanvas-->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="Appearance" aria-labelledby="AppearanceLabel">
+        <div class="offcanvas-header border-bottom">
+          <h5 class="m-0 font-14" id="AppearanceLabel">Appearance</h5>
+          <button type="button" class="btn-close text-reset p-0 m-0 align-self-center" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">  
+            <h6>Account Settings</h6>
+            <div class="p-2 text-start mt-3">
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="settings-switch1">
+                    <label class="form-check-label" for="settings-switch1">Auto updates</label>
+                </div><!--end form-switch-->
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="settings-switch2" checked>
+                    <label class="form-check-label" for="settings-switch2">Location Permission</label>
+                </div><!--end form-switch-->
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="settings-switch3">
+                    <label class="form-check-label" for="settings-switch3">Show offline Contacts</label>
+                </div><!--end form-switch-->
+            </div><!--end /div-->
+            <h6>General Settings</h6>
+            <div class="p-2 text-start mt-3">
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="settings-switch4">
+                    <label class="form-check-label" for="settings-switch4">Show me Online</label>
+                </div><!--end form-switch-->
+                <div class="form-check form-switch mb-2">
+                    <input class="form-check-input" type="checkbox" id="settings-switch5" checked>
+                    <label class="form-check-label" for="settings-switch5">Status visible to all</label>
+                </div><!--end form-switch-->
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="settings-switch6">
+                    <label class="form-check-label" for="settings-switch6">Notifications Popup</label>
+                </div><!--end form-switch-->
+            </div><!--end /div-->               
+        </div><!--end offcanvas-body-->
+    </div>
+    <!--end Rightbar/offcanvas-->
+    <!--end Rightbar-->
+    
+   <!--Start Footer-->
+   <!-- Footer Start -->
+   <footer class="footer text-center text-sm-start">
+       &copy; <script>
+           document.write(new Date().getFullYear())
+       </script> Metrica <span class="text-muted d-none d-sm-inline-block float-end">Crafted with <i
+               class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
+   </footer>
+   <!-- end Footer -->                
+   <!--end footer-->
+</div>
+{% endblock content %}
+
+
+

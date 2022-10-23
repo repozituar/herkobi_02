@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'tatbikat.mustecirin',
     'tatbikat.sayfalar',
     'tatbikat.vazaif',
+    'tatbikat.uygulamalar',
 
     'django_user_agents',
     'import_export',

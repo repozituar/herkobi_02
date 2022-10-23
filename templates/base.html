@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block head_title %}{% endblock head_title %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="{% static 'dist/assets/images/favicon.ico' %}">
+        <!-- App css -->
+        <link href="{% static 'dist/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'dist/assets/css/icons.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'dist/assets/css/app.min.css' %}" rel="stylesheet" type="text/css" />
+
+    </head>
+    <body id="body">
+        <!-- leftbar-tab-menu -->
+        {% include 'components/leftbar-tab-menu.html' %}
+        <!-- end leftbar-tab-menu-->
+
+        <!-- Top Bar Start -->
+        <!-- Top Bar Start -->
+        {% include 'components/topbar.html' %}
+        <!-- Top Bar End -->
+        <!-- Top Bar End -->
+
+        <div class="page-wrapper">
+            <!-- Page Content-->
+            {% block content %}{% endblock content %}
+            <!-- end page content -->
+        </div>
+        <!-- end page-wrapper -->
+
+        <!-- Javascript  -->   
+        <!-- App js -->
+        <script src="{% static 'dist/assets/js/app.js' %}"></script>
+
+    </body>
+    <!--end body-->
+</html>

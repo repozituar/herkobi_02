@@ -109,7 +109,7 @@ def profile(request):
     
     if len(request.user.mesuliyetler.all()) <= 0:
 
-        return redirect('ruyet:mustahdimin')
+        return redirect('uygulamalar:mustahdimin')
 
-    return render(request, 'ruyet/serlevha.html', context)
+    return render(request, 'uygulamalar/serlevha.html', context)
 
