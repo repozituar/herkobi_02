@@ -29,7 +29,7 @@ class Vazife(Hatm):
     yol = models.CharField(max_length=255, blank=True, null=True)
     isim = models.CharField(max_length=255, verbose_name=_("İsim"), blank=True, null=True)
     fihrist = models.ForeignKey(Fihrist, on_delete=models.CASCADE, blank=True, null=True)
-    salahiyet = models.OneToOneField(Salahiyet, on_delete=models.CASCADE, blank=True, null=True)
+    salahiyet = models.ForeignKey(Salahiyet, on_delete=models.CASCADE, blank=True, null=True)
 
 
 

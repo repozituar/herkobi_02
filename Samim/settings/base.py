@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
+    'tatbikat.esnad',
+    'tatbikat.imtidad',
     'tatbikat.mesanid',
     'tatbikat.mustahdimin',
     'tatbikat.mustecirin',

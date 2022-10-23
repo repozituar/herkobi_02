@@ -6,8 +6,13 @@ from django.core.exceptions import PermissionDenied
 from tatbikat.mustahdimin.models import Mustahdim, Tarihce, Muvazzaf
 from tatbikat.mesanid.models import Fihrist
 from tatbikat.mustecirin.models import Tatbik
+from tatbikat.esnad.forms import IstirakForm
 from .forms import MuvazzafSinupForm
 from .mixins import MumtazMixin
+
+from .utils import (
+    abonelik_yap_veya_getir, herkobi_yap_veya_getir, fihrist_yap, vazifelerini_tevdi_et,
+)
 
 
 @login_required
@@ -94,7 +99,7 @@ def tatbik_i_mustahdim(request, pk, sebike):
             istirak.save()
             vazifelerini_tevdi_et(mustahdim, tatbik)
 
-        return redirect('ruyet:mustahdimin')
+        return redirect('uygulamalar:mustahdimin')
 
     tatbikat = Tatbik.objects.filter(faaldir=True)
 
@@ -105,6 +110,6 @@ def tatbik_i_mustahdim(request, pk, sebike):
         "tatbikat": tatbikat
     }
 
-    return render(request, 'ruyet/tatbik-i_mustahdim.html', context)
+    return render(request, 'uygulamalar/tatbik-i_mustahdim.html', context)
 
 
