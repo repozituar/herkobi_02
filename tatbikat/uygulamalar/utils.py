@@ -1,3 +1,4 @@
+from tatbikat.imtidad.models import Abonelik, Herkobi
 from tatbikat.mesanid.models import Fihrist
 from tatbikat.mustahdimin.models import Mesuliyet, Salahiyet, Vazife
 from tatbikat.mustecirin.models import Tatbik
@@ -7,10 +8,6 @@ def fihrist_yap(tatbik, mustecir):
         mustecir=mustecir,
         isim=tatbik.isim,
         sebike=tatbik.sebike,
-        meshur_isim=tatbik.meshur_isim,
-        sened_isim=tatbik.sened_isim,
-        mesuliyet_isim=tatbik.mesuliyet_isim,
-        salahiyet_isim=tatbik.salahiyet_isim,
         kufl=tatbik.miftah,
         faaldir=True
     )
@@ -22,9 +19,6 @@ def herkobi_fihristi_yap_veya_getir(mustecir):
         mustecir=mustecir,
         isim="Herkobi A.Ş.",
         sebike="herkobi-a-s",
-        sened_isim="Herkobi A.Ş.",
-        mesuliyet_isim="Herkobi A.Ş.",
-        salahiyet_isim="Herkobi A.Ş.",
         kufl=323,
         faaldir=True
     )
@@ -40,10 +34,6 @@ def herkobi_yap_veya_getir(mustecir):
     )
     return herkobi
 
-
-
-
-
 def abonelik_yap_veya_getir(tatbik, mustecir):
     herkobi, oldu = Abonelik.objects.get_or_create(
         mustecir=mustecir,
@@ -56,7 +46,7 @@ def abonelik_yap_veya_getir(tatbik, mustecir):
 def mesuliyet_yap(fihrist):
     mesuliyet = Mesuliyet.objects.create(
         mustecir=fihrist.mustecir,
-        isim=fihrist.meshur_isim,
+        isim=fihrist.isim,
         fihrist=fihrist,
     )
     return mesuliyet
@@ -66,18 +56,17 @@ def salahiyet_yap(miftah, mesuliyet):
     uygulama = fihrist_yap(tatbik, mesuliyet.mustecir)
     salahiyet = Salahiyet.objects.create(
         mustecir=mesuliyet.mustecir,
-        isim=tatbik.salahiyet_isim,
+        isim=tatbik.meshur_isim,
         fihrist=uygulama,
         mesuliyet=mesuliyet
     )
     return salahiyet
 
-def vazife_yap(miftah, salahiyet):
-    tatbik = Tatbik.objects.get(miftah=miftah)
+def vazife_yap(tatbik, salahiyet):
     uygulama = fihrist_yap(tatbik, salahiyet.mustecir)
     vazife = Vazife.objects.create(
         mustecir=salahiyet.mustecir,
-        isim=salahiyet.mesuliyet.isim,
+        isim=f"{uygulama.isim} {salahiyet.mesuliyet.isim}",
         fihrist=uygulama,
         salahiyet=salahiyet,
     )
@@ -88,10 +77,15 @@ def vazifelerini_tevdi_et(mustahdim, tatbik):
     mustecir = mustahdim.mustecir
     fihrist = fihrist_yap(tatbik, mustecir)
     mesuliyet = mesuliyet_yap(fihrist)
+    
     for m in tatbik.teallukat.split(", "):
         salahiyet = salahiyet_yap(int(m), mesuliyet)
-        vazife_yap(salahiyet)
+        tatbik_i_muallak = Tatbik.objects.get(miftah=int(m))
+
+        for mif in tatbik_i_muallak.teallukat.split(", "):
+            vazife_yap(tatbik_i_muallak, salahiyet)
     
     mustahdim.mesuliyetler.add(mesuliyet)
+    mustahdim.save()
 
     return True
